@@ -6,14 +6,16 @@ default value to be "text" and return the input element inside label. (create it
 */
 
 // Your code goes here
-function createInputElm (innerText, attribute = "text") {
-  let parent = document.createElement("label");
-  parent.innerText = `${innerText}:`
-  let input = document.createElement("input");
-  input.setAttribute("type", attribute);
-  parent.append(input);
-  return parent;
-}
+// function createInputElm (labelMsg, type = "text") {
+//   let label = document.createElement("label");
+//   label.innerText = labelMsg;
+//   let input = document.createElement("input");
+//   input.type = type;
+
+//   label.append(input);
+
+//   return label;
+// }
 
 // TEST
 createInputElm('Your name'); //<label>Your name: <input type="text"></label>
@@ -22,6 +24,12 @@ createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></
 // 2. Do the same thing as above using string literal like `<h1>Hello</h1>`
 
 // Your code goes here
+function createInputElm (labelMsg, type = "text") {
+  let label = document.createElement("label")
+  label.innerHTML = `${labelMsg}: <input type = ${type}>`;
+  return label;
+}
+
 
 // TEST
 createInputElm('Your name'); //<label>Your name: <input type="text"></label>
@@ -32,6 +40,17 @@ createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></
 // Your code goes here
 
 // TEST
+function createList(array) {
+  let ul = document.createElement("ul");
+  array.forEach(element => {
+    let li = document.createElement("li")
+    li.innerText = element;
+    ul.append(li);
+  });
+  return ul;
+}
+
+
 // createList(['ALABAMA', 'ALASKA', 'HAWAII', 'KENTUCKY']);
 // createList(['Afghanistan', 'Antarctica', 'Congo', 'Estonia']);
 
@@ -48,12 +67,23 @@ createInputElm('Your age', 'number'); //<label>Your age: <input type="number"></
 */
 
 // Your code goes here
+function createTodoList (arr = []) {
+  let html = `<ul>
+  ${arr.map((ele) => `<li>
+    <p>${ele.name}</p>
+    <input type="checkbox" ${ele.isDone == true ? "checked" : ""} name="" id="">
+    <span>X</span>
+  </li>`).join("")}
+</ul>`
+  return html;
+}
+
 
 // TEST
-// createTodoList([
-//   { name: 'Learn DOM', isDone: false },
-//   { name: 'Learn JS', isDone: true },
-// ]);
+createTodoList([
+  { name: 'Learn DOM', isDone: false },
+  { name: 'Learn JS', isDone: true },
+])
 // createTodoList([
 //   { name: 'Learn DOM', isDone: false },
 //   { name: 'Learn React', isDone: true },
