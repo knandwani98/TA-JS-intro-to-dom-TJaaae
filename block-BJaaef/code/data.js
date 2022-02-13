@@ -1,3 +1,6 @@
+// got.houses[i].people[i].name;
+
+
 let got = {
   houses: [
     {
