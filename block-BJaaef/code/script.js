@@ -8,11 +8,12 @@
         // </div>
 
 let root = document.body.querySelector(".root");
-let allPeople = got.houses.map(house => house.people).forEach(arr => {
-        arr.forEach(person => person.name);        
-});
+let allPeople = got.houses.reduce((acc, cv) => {
+        acc = acc.concat(cv.people);
+        return acc;
+}, []);
 
-got.houses.forEach((house) => {
+allPeople.forEach((char) => {
         let card = document.createElement("div");
         card.setAttribute ("class", "card");
 
@@ -20,25 +21,21 @@ got.houses.forEach((house) => {
         cardHeader.setAttribute("class", "card-header");
         
         let img = document.createElement("img");
-        img.src = house.people.forEach(char => {
-                char.image;
-        });
+        img.src = char.image;
+
         let h2 = document.createElement("h2");
-        h2.innerText = house.people.
+        h2.innerText = char.name;
 
         cardHeader.append(img, h2);
         
         let p = document.createElement("p");
-        p.innerText = house.people.forEach(char => {
-                char.description;
-        });
+        p.innerText = char.description;
+
         let btn = document.createElement("button");
         btn.setAttribute("class", "btn");
         btn.innerText = "Learn More!"
-        btn.href = house.people.forEach(char => {
-                char.wikiLink;
-        });
-
+        btn.href = char.wikiLink;
+        
         card.append (cardHeader, p, btn);
         root.append(card);
 })
